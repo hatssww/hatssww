@@ -10,3 +10,17 @@ def generate_numbers(n):
     return random_list
 
 print(generate_numbers(6))
+
+
+# 당첨 번호 뽑기
+def draw_winning_numbers():
+    winning_numbers = generate_numbers(6)
+    winning_numbers.sort()
+    
+    # 보너스 번호 추첨
+    bonus = random.randint(1,45)
+    if bonus not in winning_numbers:
+        winning_numbers.append(bonus)
+    return winning_numbers
+
+print(draw_winning_numbers())
