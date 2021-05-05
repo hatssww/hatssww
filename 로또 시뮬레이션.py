@@ -14,13 +14,7 @@ print(generate_numbers(6))
 
 # 당첨 번호 뽑기
 def draw_winning_numbers():
-    winning_numbers = generate_numbers(6)
-    winning_numbers.sort()
-    
-    # 보너스 번호 추첨
-    bonus = random.randint(1,45)
-    if bonus not in winning_numbers:
-        winning_numbers.append(bonus)
-    return winning_numbers
+    winning_numbers = generate_numbers(7)
+    return sorted(winning_numbers[:6]) + winning_numbers[6:]
 
 print(draw_winning_numbers())
