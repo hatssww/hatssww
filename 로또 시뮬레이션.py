@@ -22,4 +22,21 @@ def count_matching_numbers(list_1, list_2):
     s2 = set(list_2)
     return len(s1 & s2)
 
-print(count_matching_numbers([2, 7, 11, 14, 25, 40], [2, 11, 13, 14, 30, 35]))
+
+# 당첨금 확인
+def check(numbers, winning_numbers):
+    count = count_matching_numbers(numbers, winning_numbers[:6])
+    bonus_matching = count_matching_numbers(numbers, winning_numbers[6:])
+    
+    if count == 6:
+        return 1000000000
+    elif count == 5 and bonus_matching == 1:
+        return 50000000
+    elif count == 5:
+        return 1000000
+    elif count == 4:
+        return 50000
+    elif count == 3:
+        return 5000
+    else:
+        return 0
