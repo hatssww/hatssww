@@ -1,18 +1,14 @@
 f = open('vocabulary.txt', 'r')
-data = f.readlines()
 
-question = []
-answer = []
-
-for line in range(len(data)):
-    new_data = data[line].strip().split(': ')
-    question.append(new_data[1])
-    answer.append(new_data[0])
-
-for i in range(len(question)):
-    print(f"{question[i]}: ", end="")
-    user_input = input()
-    if user_input == answer[i]:
-        print("맞았습니다!")
+for line in f:
+    new_data = line.strip().split(': ')
+    question, answer = new_data[1], new_data[0]
+    
+    # 유저 입력
+    user_input = input(f"{question}: ")
+    
+    # 정답 확인
+    if user_input == answer:
+        print("맞았습니다!\n")
     else:
-        print(f"아쉽습니다. 정답은 {answer[i]}입니다.")
+        print(f"아쉽습니다. 정답은 {answer}입니다.\n")
