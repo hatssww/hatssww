@@ -12,5 +12,8 @@ boolean_job_category = (df['job_category'] != 'Totals') & (df['job_category'] !=
 # 조건 합침
 df_adobe = df[boolean_adobe & boolean_all_races & boolean_not_zero & boolean_job_category]
 
+# 인덱스 변경
+df_adobe.set_index('job_category', inplace=True)
+
 # 파이그래프 출력(직군 분포)
 df_adobe.plot(kind='pie', y='count')
