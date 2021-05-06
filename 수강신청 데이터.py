@@ -2,7 +2,7 @@ import pandas as pd
 
 df = pd.read_csv('data/enrolment_1.csv')
 
-# 수강신청 가능 여부 판단 조건
+# 수강신청 가능 여부 column 추가
 df['status'] = 'allowed'
 
 # 1학년은 들을 수 없는 수업 제한
@@ -21,9 +21,6 @@ closed_courses= list(count[count < 5].index)
 for course in closed_courses:
     df.loc[df['course name'] == course, 'status'] = 'not allowed'
 
-
-# 위에서 작업한 내용 적용한 새파일 이용
-df = pd.read_csv('data/enrolment_2.csv')
 
 # 개강 가능 과목 추출
 allowed = df["status"] == "allowed"
@@ -50,3 +47,20 @@ for course in medium_room:
     df.loc[(df["course name"] == course) & allowed, "room assignment"] = "Medium room"
 for course in small_room:
     df.loc[(df["course name"] == course) & allowed, "room assignment"] = "Small room"
+
+
+# 과목별 분반 지정
+for i in range(len(auditorium)):
+    df.loc[(df["course name"] == sorted(auditorium)[i]) & allowed, "room assignment"] = "Auditorium-" + str(i + 1)
+for i in range(len(large_room)):
+    df.loc[(df["course name"] == sorted(large_room)[i]) & allowed, "room assignment"] = "Large-" + str(i + 1)
+for i in range(len(medium_room)):
+    df.loc[(df["course name"] == sorted(medium_room)[i]) & allowed, "room assignment"] = "Medium-" + str(i + 1)
+for i in range(len(small_room)):
+    df.loc[(df["course name"] == sorted(small_room)[i]) & allowed, "room assignment"] = "Small-" + str(i + 1)
+
+# column 이름 변경
+df.rename(columns={"room assignment": "room number"}, inplace = True)
+
+# 결과 출력
+df
