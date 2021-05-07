@@ -19,7 +19,7 @@ search_ranks = []
 
 # 검색어 추출해서 리스트에 담기
 for li in li_tags:
-    search_ranks.append(li.text.strip()[4:])
+    search_ranks.append(li.text.strip().split(' ')[2])
     
 # 결과 출력
 print(search_ranks)
