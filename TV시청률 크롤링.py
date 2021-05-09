@@ -1,4 +1,3 @@
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
@@ -18,6 +17,7 @@ for i in year:
                 rating_pages.append(soup)
             week_index += 1
         month += 1
+
 
 # 레코드를 담는 빈 리스트 생성
 records = []
