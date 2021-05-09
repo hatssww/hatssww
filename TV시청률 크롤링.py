@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 # 각 기간별 페이지 모두 받아 리스트로 만들기
 year = list(range(2010, 2019))
@@ -11,7 +12,9 @@ for i in year:
         while week_index < 5:
             url = f"https://workey.codeit.kr/ratings/index?year={i}&month={month}&weekIndex={week_index}"
             response = requests.get(url)
-            rating_pages.append(response.text)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            if len(soup.select('.row')) > 1:
+                rating_pages.append(response.text)
             week_index += 1
         month += 1
 
