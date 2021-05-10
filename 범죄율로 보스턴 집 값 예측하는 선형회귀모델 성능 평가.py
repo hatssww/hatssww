@@ -28,10 +28,10 @@ model.intercept_  # theta_0
 model.coef_  # theta_1
 # f(x) = 24.12202188 -0.41546547x
 
-# 예측값
+# 평가 예측값
 y_test_predict = model.predict(x_test)  
 
 # 테스트 코드 (평균 제곱근 오차로 모델 성능 평가)
 mse = mean_squared_error(y_test, y_test_predict)
 
-mse ** 0.5
+print(mse ** 0.5)
