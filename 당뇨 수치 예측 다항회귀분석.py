@@ -20,5 +20,19 @@ polynomial_feature_names = polynomial_transformer.get_feature_names(diabetes_dat
 # 다항 입력 변수를 pandas dataframe으로 변환
 X = pd.DataFrame(polynomial_data, columns=polynomial_feature_names)
 
-# 테스트 코드
-X.head()
+# 목표 변수를 pandas dataframe으로 변환
+y = pd.DataFrame(diabetes_dataset.target, columns=['diabetes'])
+
+# 학습 데이터와 평가 데이터 나누기
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
+
+# 선형 회귀 모델 학습시키기
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 평가 예측값
+y_test_predict = model.predict(X_test)
+
+# 평균 제곱근 오차로 모델 성능 평가
+mse = mean_squared_error(y_test, y_test_predict)
+print(mse ** 0.5)
