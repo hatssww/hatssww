@@ -10,6 +10,7 @@
 * Python
 * numpy, pandas 등을 활용한 데이터 분석 및 시각화
 * 웹 크롤링
+* Machine Learning
 <br>
 </br>
 
