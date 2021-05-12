@@ -1,5 +1,6 @@
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
 
 import pandas as pd
 
@@ -14,5 +15,16 @@ y = pd.DataFrame(cancer_data.target, columns=['class'])
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
 y_train = y_train.values.ravel()
 
-# 트레이닝 셋 확인
-print(X_train.head())
+# 결정 트리 모델 만들기
+model = DecisionTreeClassifier(max_depth=5, random_state=42)
+model.fit(X_train, y_train)  # 모델 학습
+
+# testing set 예측값
+predictions = model.predict(X_test)
+
+# 모델 성능 평가
+score = model.score(X_test, y_test)
+
+# 결과 출력
+print(predictions)
+print(score)
