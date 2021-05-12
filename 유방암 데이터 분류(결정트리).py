@@ -19,12 +19,15 @@ y_train = y_train.values.ravel()
 # 결정 트리 모델 만들기
 model = DecisionTreeClassifier(max_depth=5, random_state=42)
 model.fit(X_train, y_train)  # 모델 학습
-"""
 
 # 랜덤 포레스트 모델 만들기
 model = RandomForestClassifier(n_estimators=10, max_depth=4, random_state=42)
 model.fit(X_train, y_train)  # 모델 학습
+"""
 
+# 에다 부스트 모델 만들기
+model = AdaBoostClassifier(n_estimators=50, random_state=5)
+model.fit(X_train, y_train)  # 모델 학습
 
 # testing set 예측값
 predictions = model.predict(X_test)
