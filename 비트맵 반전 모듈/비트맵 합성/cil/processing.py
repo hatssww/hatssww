@@ -1,4 +1,4 @@
-__all__ = ['invert', 'merge']
+__all__ = ['invert', 'merge', 'horizontal_flip', 'vertical_flip']
 
 
 # 이미지 색상 반전
@@ -23,6 +23,26 @@ def merge(img1, img2):
         return new_img
     else:
         print('img1과 img2의 크기가 같아야 합니다!')
+
+
+# 이미지 좌우 반전
+def horizontal_flip(img):
+    [height, width] = get_size(img)
+    new_img = empty_image(height, width)
+    for i in range(height):
+        for j in range(width):
+            new_img[i][-1-j] = img[i][j]
+    return new_img
+
+
+# 이미지 상하 반전 
+def vertical_flip(img):
+    [height, width] = get_size(img)
+    new_img = empty_image(height, width)
+    for i in range(height):
+        for j in range(width):
+            new_img[-1-i][j] = img[i][j]
+    return new_img
 
 
 # 이미지 크기를 계산해 주는 함수
