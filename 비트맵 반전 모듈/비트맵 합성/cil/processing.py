@@ -1,3 +1,6 @@
+__all__ = ['invert', 'merge']
+
+
 # 이미지 색상 반전
 def invert(img):
     height, width = len(img), len(img[0])

@@ -1,22 +1,28 @@
-from cil.utils import read_image, display
-from cil.processing import invert as inv, merge as mrg
+# __init__에 필요한 함수와 모듈만 import 하도록 설정
+import cil
 
 
 # 이미지 불러와서 처리
-logo = read_image('codeit_logo')
-inverted_logo = inv(logo)  # 반전
-merged_img = mrg(logo, inverted_logo)  # 원본 + 반전
+logo = cil.read_image('codeit_logo')
+text = cil.read_image('codeit_text')
 
-print('원본 이미지:')
-display(logo)
-print('\n색상 반전 이미지:')
-display(inverted_logo)
+print('코드잇 로고:')
+cil.display(logo)
+print('\n코드잇 텍스트:')
+cil.display(text)
+
+inverted_text = cil.invert(text)  # text 색상 반전
+merged_img = cil.merge(logo, text)  # logo + text 합성
+
+print('\n색상 반전 텍스트:')
+cil.display(inverted_text)
 print('\n합성 이미지:')
-display(merged_img)
+cil.display(merged_img)
 
-# 결과 출력
+
+# 사용한 네임스페이스 확인
 print()
-dir_list = dir()
-key_names = ['read_image', 'display', 'inv', 'mrg']
-print(all(x in dir_list for x in key_names))
-print('save_image' not in dir_list)
+key_functions = ['read_image', 'save_image', 'display', 'invert', 'merge']
+non_key_functions = ['get_size', 'empty_image', 'invert_bit', 'or_bits']
+print(all(x in dir(cil) for x in key_functions))
+print(not any(x in dir(cil) for x in non_key_functions))
