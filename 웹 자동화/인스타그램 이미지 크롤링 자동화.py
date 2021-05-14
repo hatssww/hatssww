@@ -26,3 +26,24 @@ driver.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/
 # 로그인
 time.sleep(1.5)
 driver.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[3]/button/div").click()
+
+
+# https://www.instagram.com/hatssww/ 접속
+time.sleep(10)
+driver.get('https://www.instagram.com/hatssww/')
+
+
+# 웹 페이지 가장 밑으로 스크롤
+# scrollHeight 가져오기
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+while True:
+    # scrollHeight 까지 스크롤
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(1)
+
+    # scrollHeight 비교
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+        break
+    last_height = new_height
