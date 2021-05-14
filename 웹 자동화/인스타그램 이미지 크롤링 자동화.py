@@ -52,3 +52,18 @@ while True:
 # 첫번째 게시물 선택
 first_img_css="div.v1Nh3.kIKUG._bz0w"
 driver.find_element_by_css_selector(first_img_css).click()
+
+
+# 이미지 url 저장
+img_object_css = "article > div._97aPb > div > div > div.KL4Bh > img"
+img_object = driver.find_element_by_css_selector(img_object_css)
+img_url = img_object.get_attribute("src")
+
+# 이미지 저장할 경로 정의
+img_path = 'C:/Users/USER/Desktop/my_images/' + '1.jpg'
+
+# requests 패키지로 이미지 다운로드
+response = requests.get(img_url)
+if response.status_code == 200:
+    with open(img_path, 'wb+') as f:
+        f.write(response.content)
