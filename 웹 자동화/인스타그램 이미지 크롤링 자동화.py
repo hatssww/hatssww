@@ -47,3 +47,8 @@ while True:
     if new_height == last_height:
         break
     last_height = new_height
+
+
+# 첫번째 게시물 선택
+first_img_css="div.v1Nh3.kIKUG._bz0w"
+driver.find_element_by_css_selector(first_img_css).click()
