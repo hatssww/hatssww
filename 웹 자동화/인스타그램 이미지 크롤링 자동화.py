@@ -4,6 +4,10 @@ from selenium import webdriver
 import requests
 
 
+# USB기기 관련 문제시 추가 설정 옵션
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
 # 웹드라이버 생성
 driver = webdriver.Chrome('C:/Users/USER/chromedriver_win32/chromedriver', options=options)
 driver.implicitly_wait(3)
