@@ -1,8 +1,7 @@
 import time
 
 from selenium import webdriver
-import requests
-
+import urllib.request
 
 # USB기기 관련 문제시 추가 설정 옵션
 options = webdriver.ChromeOptions()
@@ -19,17 +18,16 @@ driver.get('https://www.instagram.com/accounts/login/')
 
 # ID 입력
 time.sleep(3)
-driver.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[1]/div/label/input").send_keys('ID')
+driver.find_element_by_css_selector("div:nth-child(1) > div > label > input").send_keys('ID')
 # 비밀번호 입력
-time.sleep(1.5)
-driver.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[2]/div/label/input").send_keys('PW')
+time.sleep(1.0)
+driver.find_element_by_css_selector("div:nth-child(2) > div > label > input").send_keys('PW')
 # 로그인
-time.sleep(1.5)
-driver.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[3]/button/div").click()
-
+time.sleep(1.0)
+driver.find_element_by_css_selector("div:nth-child(3) > button").click()
 
 # https://www.instagram.com/hatssww/ 접속
-time.sleep(10)
+time.sleep(7)
 driver.get('https://www.instagram.com/hatssww/')
 
 
@@ -40,7 +38,7 @@ last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
     # scrollHeight 까지 스크롤
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(1)
+    time.sleep(2)
 
     # scrollHeight 비교
     new_height = driver.execute_script("return document.body.scrollHeight")
@@ -48,22 +46,28 @@ while True:
         break
     last_height = new_height
 
+# 작은 이미지 선택하기
+images = driver.find_elements_by_css_selector(".FFVAD")
 
-# 첫번째 게시물 선택
-first_img_css="div.v1Nh3.kIKUG._bz0w"
-driver.find_element_by_css_selector(first_img_css).click()
+# 이미지 저장하기
+count = 1
+b = 0
+for i in range(len(images) + 1):
+    try:
+        time.sleep(3)
+        i += 1
+        if i % 3 == 1:
+            a = 1
+            b += 1
+        elif i % 3 == 2:
+            a = 2
+        else:
+            a = 3
+        
+        imgUrl = driver.find_element_by_css_selector(f"#react-root > section > main > div > div._2z6nI > article > div > div > div:nth-child({b}) > div:nth-child({a}) > a > div > div.KL4Bh > img").get_attribute("src")
+        urllib.request.urlretrieve(imgUrl, str(count) + ".jpg")
+        count += 1
+    except:
+        pass
 
-
-# 이미지 url 저장
-img_object_css = "article > div._97aPb > div > div > div.KL4Bh > img"
-img_object = driver.find_element_by_css_selector(img_object_css)
-img_url = img_object.get_attribute("src")
-
-# 이미지 저장할 경로 정의
-img_path = 'C:/Users/USER/Desktop/my_images/' + '1.jpg'
-
-# requests 패키지로 이미지 다운로드
-response = requests.get(img_url)
-if response.status_code == 200:
-    with open(img_path, 'wb+') as f:
-        f.write(response.content)
+driver.close()
