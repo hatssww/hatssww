@@ -1,7 +1,7 @@
 ## 안녕하세요, hatssww 입니다. 👋
 
-> 저는 현재 데이터 엔지니어링에 관심을 가지고 직무와 관련하여 필요한 분야를 공부하고 있습니다.<br>
-> "hatssww" repository에는 간단한 실습 프로젝트와 스스로 공부해 본 코드들을 올리고 있습니다.<br>
+> 저는 현재 Back-end에 관심을 가지고 직무와 관련하여 필요한 분야를 공부하고 있습니다.<br>
+> "hatssww_Python" repository에는 Python으로 작성한 간단한 실습 프로젝트와 스스로 공부해 본 코드들을 올리고 있습니다.<br>
 > 또한 네이버 블로그와 인스타그램, Notion에 공부 과정과 기록들을 업로드 하고 있습니다.
 <br>
 
@@ -21,6 +21,7 @@
 👤 hatssww
 * instagram DM: @hatssww
 * blog: https://blog.naver.com/hatssww
+* Notion: https://www.notion.so/hatssww-4ac5388a9bb34cc3898209dc458c4138
 * Email: hatssww@gmail.com
 
 <!--
